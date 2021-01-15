@@ -1,6 +1,33 @@
 const likeButton = document.querySelector('#like');
 const dislikeButton = document.querySelector('#dislike');
 const skipButton = document.querySelector('#skip');
+const playButton = document.querySelector('#play');
+
+
+function setTimer(){
+    var seconds = 59;
+    var minutes = 1;
+    var timer = setInterval(function(){
+        document.getElementById('safeTimerDisplay').innerHTML= minutes + ":" +seconds;
+        seconds - 1;
+        minutes - 1;
+
+        { minutes < 1 ? minutes = 0 + "0" : minutes -= 1 }
+        { seconds > 0 ? seconds -= 1 : ""}
+        { seconds < 10 && seconds > 0 ? seconds = "0" + seconds : ""}
+        if ( minutes === 0 && seconds === -1) {
+          clearInterval(timer);
+          sortLikes();
+          sortDislikes();
+          sortSkips();
+          //render Play Again Button
+          //remove timer markup
+        }
+    }, 100);
+}
+
+playButton.addEventListener('click', setTimer);
+
 
 const cats = [
   {name: "rosie", image: 10},
@@ -14,6 +41,7 @@ let index = 0;
 let likeArray = [];
 let dislikeArray = [];
 let skipArray = [];
+
 function handleCats() {
 let totalCats = cats.length;
 if (index < totalCats) {
@@ -23,8 +51,8 @@ if (index < totalCats) {
 }
 
 // likeArray.push(cats[index])
-  console.log(cats[index].name)
-  console.log(cats[index].image)
+  console.log(cats[index].name, cats[index].image)
+  console.log
 }
 
 function sortLikes() {
